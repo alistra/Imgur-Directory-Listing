@@ -1,10 +1,11 @@
 <h1>Images</h1>
-
 <%= link_to "RSS Feed", images_url(:rss) %>
+
 <table>
 <% @images.each do |image| %>
   <tr>
-	  <td><%= link_to image.name, image, :"data-thumblink" => image.large_thumb %></td>
+	  <td><%= link_to image.name, image, :"thumb" => image.large_thumb %></td>
   </tr>
 <% end %>
 </table>
+<%= javascript_include_tag "tooltip" %>

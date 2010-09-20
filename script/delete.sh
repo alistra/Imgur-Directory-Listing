@@ -1,2 +1,2 @@
 #!/bin/bash
-/home/alistra/images/script/runner  "Image.in_delete('$@')"
+script/runner  "Image.in_delete('$@')"
