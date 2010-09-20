@@ -17,8 +17,6 @@ h2. Installation
 
 Create a file in /etc/incron.d/ directory and add following lines to it:
 
-bc. /your/images/dir/ IN_CREATE,IN_MOVED_TO /where/this/app/is/script/create.sh $#
-/your/images/dir/ IN_DELETE,IN_MOVED_FROM /where/this/app/is/script/delete.sh $#
+bc. /home/alistra/images/public/images/ IN_CREATE,IN_DELETE,IN_MOVED_FROM,IN_MOVED_TO /home/alistra/images/script/read_dir.sh $#
 
-p. 
-And temporary you have to set images_path variable in app/model/image.rb
+p. And temporary you have to set images_path variable in app/model/image.rb
