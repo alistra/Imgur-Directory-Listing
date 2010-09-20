@@ -7,8 +7,8 @@ This is a directory listing app for people with slow upload speeds. Each image i
 It's using incron, to add an image to the database (and to [imgur.com](http://imgur.com)), each time it's added to the images directory. 
 
 ## Requirements
-*incron installed
-*	gem install imgur
+* incron installed
+* 	gem install imgur
 
 ## Installation
 TODO
