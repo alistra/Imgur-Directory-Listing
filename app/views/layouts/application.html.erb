@@ -4,13 +4,18 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Web App</title>
   <%= stylesheet_link_tag "web_app_theme", "web_app_theme_override", "themes/default/style", :cache => true %>
-  <%= javascript_include_tag "jquery" %>
-  <%= javascript_include_tag "qtip" %>
 </head>
 <body>
   <div id="container">
     <div id="header">
       <h1><a href="/">Web App</a></h1>
+      <div id="user-navigation">
+        <ul class="wat-cf">
+          <li><a href="#"><%= t("web-app-theme.profile", :default => "Profile") %></a></li>
+          <li><a href="#"><%= t("web-app-theme.settings", :default => "Settings") %></a></li>
+          <li><a href="/logout" class="logout"><%= t("web-app-theme.logout", :default => "Logout") %></a></li>
+        </ul>
+      </div>      
       <div id="main-navigation">
         <ul class="wat-cf"></ul>
       </div>
@@ -27,7 +32,7 @@
         <%= yield %>
         <div id="footer">
           <div class="block">
-            <p>Copyright &copy; <%= Time.now.year %> Imgur Directory Listing</p>
+            <p>Copyright &copy; <%= Time.now.year %> Web App.</p>
           </div>      
         </div>
       </div>
