@@ -10,7 +10,7 @@ It's using incron, to add an image to the database (and to [imgur.com](http://im
 * incron installed
 * imgur gem installed
 
-	gem install imgur
+    gem install imgur
 
 ## Installation
 TODO
