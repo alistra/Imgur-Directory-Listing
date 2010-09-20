@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /home/alistra/Imgur-Directory-Listing/
+rake startup:run
