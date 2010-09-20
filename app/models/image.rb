@@ -36,18 +36,13 @@ class Image < ActiveRecord::Base
     dirnames = Dir.entries(images_path) - [".", ".."]
 
     to_upload = dirnames - dbnames
-    to_upload.each do |x|
-      if has_image_mimetype?(images_path+x) 
-        in_create(x)
-      else
-        puts x
-      end
-    end
+    to_upload.each {|x| in_create(x) if  has_image_mimetype?(images_path+x)}
+    to_delete = dbnames - dirnames
+    to_delete.each {|x| in_delete(x)}
   end
   
   def self.has_image_mimetype?(file)
     mimetypes = ["image/bmp", "image/gif", "image/jpeg", "image/png"]
-    puts MIME::Types.of(file)
     return mimetypes.include? MIME::Types.of(file).to_s
   end
 
