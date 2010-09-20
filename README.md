@@ -11,8 +11,9 @@ It's using incron, to add an image to the database (and to [imgur.com](http://im
 * imgur gem installed
 * mime-types gem installed
 ## Installation
-Create a file in /etc/incron.d/ directory.
-Add following lines to it
+Create a file in /etc/incron.d/ directory and add following lines to it:
+
     /your/images/dir/ IN_CREATE,IN_MOVED_TO /where/this/app/is/script/create.sh $#
     /your/images/dir/ IN_DELETE,IN_MOVED_FROM /where/this/app/is/script/delete.sh $#
+
 
