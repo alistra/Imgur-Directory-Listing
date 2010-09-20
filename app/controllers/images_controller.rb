@@ -7,4 +7,7 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
     redirect_to @image.imglink
   end
+
+  def search
+    @images = Image.find_by_name(:partial)
 end
