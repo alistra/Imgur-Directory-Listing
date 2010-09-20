@@ -9,8 +9,10 @@ It's using incron, to add an image to the database (and to [imgur.com](http://im
 ## Requirements
 * incron installed
 * imgur gem installed
-
-    gem install imgur
-
+* mime-types gem installed
 ## Installation
-TODO
+Create a file in /etc/incron.d/ directory.
+Add following lines to it
+    /your/images/dir/ IN_CREATE,IN_MOVED_TO /where/this/app/is/script/create.sh $#
+    /your/images/dir/ IN_DELETE,IN_MOVED_FROM /where/this/app/is/script/delete.sh $#
+
