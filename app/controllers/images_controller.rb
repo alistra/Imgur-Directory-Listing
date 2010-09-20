@@ -9,5 +9,7 @@ class ImagesController < ApplicationController
   end
 
   def search
-    @images = Image.find_by_name(:partial)
+    @image = Image.first(:conditions => ["name like ?", params[:partial]+"%"])
+    redirect_to @image.imglink
+  end
 end
