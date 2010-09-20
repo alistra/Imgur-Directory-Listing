@@ -8,7 +8,8 @@ It's using incron, to add an image to the database (and to [imgur.com](http://im
 
 ## Requirements
 * incron installed
-* 	gem install imgur
+* imgur gem installed
+	gem install imgur
 
 ## Installation
 TODO
