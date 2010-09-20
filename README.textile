@@ -10,9 +10,10 @@ h2. Requirements
 * incron installed
 * imgur gem installed
 * mime-types gem installed
+
 h2. Installation
+
 Create a file in /etc/incron.d/ directory and add following lines to it:
-@
-	/your/images/dir/ IN_CREATE,IN_MOVED_TO /where/this/app/is/script/create.sh $#
-	/your/images/dir/ IN_DELETE,IN_MOVED_FROM /where/this/app/is/script/delete.sh $#
-@
+
+@	/your/images/dir/ IN_CREATE,IN_MOVED_TO /where/this/app/is/script/create.sh $#@
+@	/your/images/dir/ IN_DELETE,IN_MOVED_FROM /where/this/app/is/script/delete.sh $#@
