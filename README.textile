@@ -8,7 +8,7 @@ It's using incron, to add an image to the database (and to "imgur.com":http://im
 
 h2. Requirements
 * incron installed
-* imgur, mime-types, will_paginate(v2.3.11) gems installed
+* imgur, mime-types, will_paginate(v2.3.122) gems installed
 
 bc. gem install imgur
 gem install mime-types

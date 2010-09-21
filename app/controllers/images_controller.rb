@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
   def index
-    @images = Image.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 100
+    @images = Image.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 40
   end
 
   def show
@@ -9,7 +9,8 @@ class ImagesController < ApplicationController
   end
 
   def search
-    @image = Image.first(:conditions => ["name like ?", params[:partial]+"%"])
+    images = Image.all(:conditions => ["name like ?", params[:partial]+"%"])
+    @image = images[rand(images.size)]
     redirect_to @image.imglink
   end
 end
