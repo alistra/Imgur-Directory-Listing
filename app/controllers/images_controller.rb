@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
   def index
-    @images = Image.all
+    @images = Image.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 100
   end
 
   def show

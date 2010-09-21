@@ -1,11 +1,45 @@
-<h1>Images</h1>
-<%= link_to "RSS Feed", images_url(:rss) %>
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", images_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", "#" %></li>
+    </ul>
+  </div>          
+  <div class="content">          
+    <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> Images</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>             
+          <th class="first">ID</th>
+                    <th>
+            <%= t("activerecord.attributes.image.name", :default => t("activerecord.labels.name", :default => "Name")) %>
+          </th>
+                    <th class="last"><%= t("web-app-theme.created_at", :default => "Created at")  %></th>
+        </tr>
+        <% @images.each do |image| -%>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td>
+            <%= image.id %>
+          </td>
+          <td>
+		    <%= link_to image.name, image_path(image), :thumb => image.large_thumb %>
+          </td>
+                    <td class="last">
+            <%= image.created_at %>
+          </td>
+        </tr>          
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+        
+        <%= will_paginate @images  %>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
-<table>
-<% @images.each do |image| %>
-  <tr>
-	  <td><%= link_to image.name, image, :"thumb" => image.large_thumb %></td>
-  </tr>
-<% end %>
-</table>
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
 <%= javascript_include_tag "tooltip" %>

@@ -8,15 +8,21 @@ It's using incron, to add an image to the database (and to "imgur.com":http://im
 
 h2. Requirements
 * incron installed
-* imgur gem installed
-@gem install imgur@
-* mime-types gem installed
-@gem install mime-types@
+* imgur, mime-types, will_paginate(v2.3.11) gems installed
+bc. gem install imgur
+gem install mime-types
+gem install will_paginate
+
+h2. What have I stolen/used?
+* "pilu's web app theme":http://github.com/pilu/web-app-theme/
+* "qtip's image preview on hover":http://craigsworks.com/projects/qtip/demos/content/images
 
 h2. Installation
 
 Create a file in /etc/incron.d/ directory and add following lines to it:
 
 bc. /image/dir IN_CREATE,IN_MOVED_TO,IN_MOVED_FROM,IN_DELETE /path/to/app/script/readdir $#
+
+note: that $# is not needed, but incron doesn't work without it
 
 p. And temporary you have to set images_path variable in app/model/image.rb
