@@ -23,6 +23,7 @@ h2. What have I stolen/used?
 h2. Installation
 
 In the folder:
+
 bc. rake db:crate
 rake db:migrate
 
