@@ -7,8 +7,9 @@ h1. How does it work?
 It's using incron, to add an image to the database (and to "imgur.com":http://imgur.com), each time it's added to the images directory. 
 
 h2. Requirements
+* rails 2.3
 * incron installed
-* imgur, mime-types, will_paginate(v2.3.122) gems installed
+* imgur, mime-types, will_paginate gems installed
 
 bc. gem install imgur
 gem install mime-types
@@ -19,6 +20,9 @@ h2. What have I stolen/used?
 * "qtip's image preview on hover":http://craigsworks.com/projects/qtip/demos/content/images
 
 h2. Installation
+
+In the folder:
+@rake db:migrate@
 
 Create a file in /etc/incron.d/ directory and add following lines to it:
 
