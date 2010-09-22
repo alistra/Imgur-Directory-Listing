@@ -9,11 +9,12 @@ It's using incron, to add an image to the database (and to "imgur.com":http://im
 h2. Requirements
 * rails 2.3
 * incron installed
-* imgur, mime-types, will_paginate gems installed
+* imgur, mime-types, will_paginate, sqlite3-ruby (or other db) gems installed
 
 bc. gem install imgur
 gem install mime-types
 gem install will_paginate
+gem install sqlite3-ruby
 
 h2. What have I stolen/used?
 * "pilu's web app theme":http://github.com/pilu/web-app-theme/
@@ -22,7 +23,8 @@ h2. What have I stolen/used?
 h2. Installation
 
 In the folder:
-@rake db:migrate@
+bc. rake db:crate
+rake db:migrate
 
 Create a file in /etc/incron.d/ directory and add following lines to it:
 
