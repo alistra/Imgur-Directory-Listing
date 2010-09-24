@@ -36,6 +36,7 @@ class Image < ActiveRecord::Base
     dirnames = Dir.entries(images_path) - [".", ".."]
 
     to_upload = dirnames - dbnames
+    puts "Uploading #{to_upload.size} files on imgur.com. It may take a while"
     to_upload.each {|x| in_create(x) if  has_image_mimetype?(images_path+x)}
     to_delete = dbnames - dirnames
     to_delete.each {|x| in_delete(x)}

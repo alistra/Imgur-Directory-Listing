@@ -1,1 +1,6 @@
-Image.read_dir if Rails.env.production? or Rails.env.development?
+begin
+  Image.read_dir
+rescue ActiveRecord::StatementInvalid => er
+  puts "Not reading directories during migrations"
+end
+
