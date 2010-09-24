@@ -24,8 +24,7 @@ h2. Installation
 
 In the folder:
 
-bc. rake db:crate
-rake db:migrate
+bc. rake db:migrate
 
 Create a file in /etc/incron.d/ directory and add following lines to it:
 
