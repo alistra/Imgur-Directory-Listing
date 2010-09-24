@@ -1,1 +1,1 @@
-Image.read_dir if Rails.env.production? or Rails.env.developement?
+Image.read_dir if Rails.env.production? or Rails.env.development?
