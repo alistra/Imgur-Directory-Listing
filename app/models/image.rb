@@ -37,7 +37,8 @@ class Image < ActiveRecord::Base
 
     to_upload = dirnames - dbnames
     to_upload.reject! {|x| !has_image_mimetype?(images_path+x)} 
-    puts "Uploading #{to_upload.size} files on imgur.com. It may take a while" if to_upload.size > 0 
+    puts "Uploading #{to_upload.size} files on imgur.com. It may take a while" if to_upload.size > 1 
+    logger.warn "Uploading #{to_upload.size} files on imgur.com. It may take a while" if to_upload.size > 1 
     to_upload.each {|x| in_create(x)}
     to_delete = dbnames - dirnames
     to_delete.each {|x| in_delete(x)}

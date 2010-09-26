@@ -28,7 +28,7 @@ bc. rake db:migrate
 
 Create a file in /etc/incron.d/ directory and add following lines to it:
 
-bc. /image/dir IN_CREATE,IN_MOVED_TO,IN_MOVED_FROM,IN_DELETE /path/to/app/script/readdir $#
+bc. /image/dir IN_CREATE,IN_MOVED_TO,IN_MOVED_FROM,IN_DELETE /path/to/app/script/runner 'Image.read_dir' $#
 
 note: that $# is not needed, but incron doesn't work without it
 
