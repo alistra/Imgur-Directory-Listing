@@ -19,7 +19,7 @@ class Image < ActiveRecord::Base
     api_key = '27b25626f64a6a77fea07ec3ad2d5250'
     api = API.new(api_key)
 
-    images_path = '/srv/www/'
+    images_path = '/images/'
     
     upload_info = api.upload_file("#{images_path}#{self.name}")
 
@@ -30,7 +30,7 @@ class Image < ActiveRecord::Base
   end
 
   def self.read_dir
-    images_path = '/srv/www/'
+    images_path = '/images/'
     
     dbnames = Image.all.collect(&:name)
     dirnames = Dir.entries(images_path) - [".", ".."]

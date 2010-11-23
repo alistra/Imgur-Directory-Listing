@@ -11,6 +11,10 @@ class ImagesController < ApplicationController
   def search
     images = Image.all(:conditions => ["name like ?", params[:partial]+"%"])
     @image = images[rand(images.size)]
-    redirect_to @image.imglink
+    if not @image.nil?
+      redirect_to @image.imglink
+    else
+      render :no_image
+    end
   end
 end
