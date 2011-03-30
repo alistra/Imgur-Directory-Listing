@@ -19,9 +19,7 @@ class Image < ActiveRecord::Base
     api_key = '27b25626f64a6a77fea07ec3ad2d5250'
     api = API.new(api_key)
 
-    images_path = '/images/'
-    
-    upload_info = api.upload_file("#{images_path}#{self.name}")
+    upload_info = api.upload_file("#{IMAGES_PATH}#{self.name}")
   
     self.refresh = 0
     self.imglink = upload_info['original_image']
@@ -70,13 +68,11 @@ class Image < ActiveRecord::Base
   end
 
   def self.read_dir
-    images_path = '/images/'
-    
     dbnames = Image.all.collect(&:name)
-    dirnames = Dir.entries(images_path) - [".", ".."]
+    dirnames = Dir.entries(IMAGES_PATH) - [".", ".."]
 
     to_upload = dirnames - dbnames
-    to_upload.reject! {|x| !has_image_mimetype?(images_path+x)} 
+    to_upload.reject! {|x| !has_image_mimetype?(IMAGES_PATH+x)} 
     puts "Uploading #{to_upload.size} files on imgur.com. It may take a while" if to_upload.size > 1 
     to_upload.each {|x| in_create(x)}
     to_delete = dbnames - dirnames
