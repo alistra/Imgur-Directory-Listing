@@ -22,11 +22,51 @@ class Image < ActiveRecord::Base
     images_path = '/images/'
     
     upload_info = api.upload_file("#{images_path}#{self.name}")
-
+  
+    self.refresh = 0
     self.imglink = upload_info['original_image']
     self.dellink = upload_info['delete_page']
     self.large_thumb = upload_info['large_thumbnail']
     self.small_thumb = upload_info['small_thumbnail']
+  end
+
+  def self.find_dead_links
+    count = 0
+    tempfile = `mktemp`
+
+    images = Image.all.reject{|x| x.refresh == 1 }
+    max_count = images.size 
+
+    images.each do |x|
+      count += 1
+      puts "#{count}/#{max_count}"
+      begin
+        rio(x.imglink) > rio(tempfile)
+        md5sum_output = `md5sum #{tempfile}`
+        if md5sum_output =~ /4c1548f851616c6713475622c850c81e/
+          x.refresh = 1
+          x.save
+        end
+      rescue 
+        puts $!
+        x.refresh = 1
+        x.save
+      end
+    end
+
+    `rm #{tempfile}`
+  end
+
+  def self.refresh_dead_links
+    count = 0
+    images = Image.all.reject{|x| x.refresh == 0}
+    max_count = images.size
+    images.each do |x| 
+      count += 1
+      puts "#{count}/#{max_count}"
+      x.sendpic
+      x.save
+    end
   end
 
   def self.read_dir
@@ -38,7 +78,6 @@ class Image < ActiveRecord::Base
     to_upload = dirnames - dbnames
     to_upload.reject! {|x| !has_image_mimetype?(images_path+x)} 
     puts "Uploading #{to_upload.size} files on imgur.com. It may take a while" if to_upload.size > 1 
-    logger.warn "Uploading #{to_upload.size} files on imgur.com. It may take a while" if to_upload.size > 1 
     to_upload.each {|x| in_create(x)}
     to_delete = dbnames - dirnames
     to_delete.each {|x| in_delete(x)}
@@ -61,5 +100,3 @@ class Image < ActiveRecord::Base
     image.destroy
   end
 end
-    
-
