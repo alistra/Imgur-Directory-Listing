@@ -30,11 +30,11 @@ Create a file in /etc/incron.d/ directory and add following lines to it:
 
 bc. /image/dir IN_CREATE,IN_MOVED_TO,IN_MOVED_FROM,IN_DELETE /path/to/app/script/runner 'Image.read_dir' $#
 
+note: that $# is not needed, but incron doesn't work without it
+
 add those lines to your crontab (or invoke them manually) so your dead imgur links will be refreshed
 
 bc. /path/to/app/script/runner 'Image.find_dead_links'
 /path/to/app/script/runner 'Image.refresh_dead_links'
 
-note: that $# is not needed, but incron doesn't work without it
-
-p. And temporary you have to set images_path variable in app/model/image.rb
+p. Set IMAGES_PATH in config/initializers/image_dir.rb - it's a folder where you should keep images that will be sent to imgur and shown on your page
