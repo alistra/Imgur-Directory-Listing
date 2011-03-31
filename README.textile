@@ -8,7 +8,7 @@ It's using incron, to add an image to the database (and to "imgur.com":http://im
 
 h2. Requirements
 * rails 2.3
-* incron installed
+* incron, cron installed
 * imgur, mime-types, will_paginate, sqlite3-ruby (or other db) gems installed
 
 bc. gem install imgur
@@ -29,6 +29,10 @@ bc. rake db:migrate
 Create a file in /etc/incron.d/ directory and add following lines to it:
 
 bc. /image/dir IN_CREATE,IN_MOVED_TO,IN_MOVED_FROM,IN_DELETE /path/to/app/script/runner 'Image.read_dir' $#
+
+add those lines to your crontab (or invoke them manually) so your dead imgur links will be refreshed
+bc. /path/to/app/script/runner 'Image.find_dead_links'
+/path/to/app/script/runner 'Image.refresh_dead_links'
 
 note: that $# is not needed, but incron doesn't work without it
 
