@@ -32,7 +32,7 @@ class Image < ActiveRecord::Base
     count = 0
     tempfile = `mktemp`
 
-    images = Image.all.reject{|x| x.refresh == 1 }
+    images = Image.all.reject{|x| x.refresh == true }
     max_count = images.size 
 
     images.each do |x|
@@ -57,12 +57,13 @@ class Image < ActiveRecord::Base
 
   def self.refresh_dead_links
     count = 0
-    images = Image.all.reject{|x| x.refresh == 0}
+    images = Image.all.reject{|x| x.refresh == false}
     max_count = images.size
     images.each do |x| 
       count += 1
       puts "#{count}/#{max_count}"
       x.sendpic
+      x.refresh = false
       x.save
     end
   end

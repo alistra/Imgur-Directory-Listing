@@ -22,7 +22,7 @@
             <%= image.id %>
           </td>
           <td>
-		  <%= link_to image.name, image_path(image), :thumb => image.large_thumb %>
+		  <%= link_to "<img src=#{image.imglink} />", image_path(image), :thumb => image.large_thumb %>
           </td>
                     <td class="last">
             <%= image.created_at %>
@@ -42,4 +42,3 @@
 </div>
 
 <% content_for :sidebar, render(:partial => 'sidebar') -%>
-<%= javascript_include_tag "tooltip" %>
